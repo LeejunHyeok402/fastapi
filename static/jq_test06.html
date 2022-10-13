@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/jquery-3.6.1.js"></script>
+<script type="text/javascript">
+	function myclick(){
+		var sel = $("#mysel").val();
+		var str = "";
+		for(var i=1;i<=9;i++){
+			str += `${sel}*${i}=${i*sel}\n`;
+		}
+		
+		$("#myta").val(str);
+	}
+	$(document).ready(function(){
+		   $("#btn").bind("click", function() {
+	           myclick();
+	        });
+	});
+</script>
+</head>
+<body>
+	<table border="1">
+		<tr>
+			<td>출력단수</td>
+			<td>
+				<select id="mysel">
+					<option value="2">2단</option>
+					<option value="3">3단</option>
+					<option value="4">4단</option>
+					<option value="5">5단</option>
+					<option value="6">6단</option>
+					<option value="7">7단</option>
+					<option value="8">8단</option>
+					<option value="9">9단</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input type="button" value="구구단출력하기" id="btn">
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<textarea rows="10" cols="10" id="myta" style="font-size:20px" readonly></textarea>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

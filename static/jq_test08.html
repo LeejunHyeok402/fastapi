@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	.mydisp {
+		height:200px
+	}
+</style>
+<script src="js/jquery-3.6.1.js"></script>
+<script type="text/javascript">
+	function drawStar(cnt){	
+		var ret = "";
+		for(var i = 0; i<cnt ; i++) {
+			ret +="*";
+		}
+		
+		return ret;
+	}
+	function myclick(){
+		var rf = $("input[name=rf]:checked").val();
+		var rl = $("input[name=rl]:checked").val();
+		var star = "";
+		
+		for(var i = rf;i<=rl;i++) {
+			star += drawStar(i);
+			star += "<br>";
+		}
+		
+		$(".mydisp").html(star);
+	}
+	$(document).ready(function(){
+		   $("#btn").bind("click", function() {
+	           myclick();
+	        });
+	});
+</script>
+</head>
+<body>
+	<table border="1px">
+		<tr>
+			<td>시작별수</td>
+			<td>2<input type="radio" name="rf" value="2"></td>
+			<td>3<input type="radio" name="rf" value="3"></td>
+			<td>4<input type="radio" name="rf" value="4"></td>
+			<td>5<input type="radio" name="rf" value="5"></td>
+		</tr>
+		<tr>
+			<td>끝별수</td>
+			<td>6<input type="radio" name="rl" value="6"></td>
+			<td>7<input type="radio" name="rl" value="7"></td>
+			<td>8<input type="radio" name="rl" value="8"></td>
+			<td>9<input type="radio" name="rl" value="9"></td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<input type="button" value="별출력하기" id="btn">
+			</td>
+		</tr>
+		<tr>
+			<td class="mydisp" colspan="5">&nbsp;</td>
+		</tr>
+	</table>
+</body>
+</html>

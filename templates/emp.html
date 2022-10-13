@@ -1,0 +1,179 @@
+<html>
+  <head>
+    <title>Item Details</title>
+    <script src="static/js/jquery-3.6.1.js"></script>
+    <script type="text/javascript">
+    	$(document).ready(function(){
+    	    $.ajax({
+                url: "emp_selects/",
+                type: "get", //Change this to post or put
+                dataType: "json",
+                contentType: "application/json",
+                success: function(data) {
+                	var str = ""
+                	for(var i=0;i<=data.rows.length-1;i++ ){
+                		str+= `<tr><td><a href=javascript:fn_one(${data.rows[i].e_id}) >`+data.rows[i].e_id+"</a></td><td>"+data.rows[i].e_name+"</td><td>"+data.rows[i].sex+"</td><td>"+data.rows[i].addr+"</td></tr>"
+                	}
+                   $("#mytbody").html(str);
+                },
+            });
+    	})
+    	
+    	function fn_list(){
+    		$.ajax({
+                url: "emp_selects/",
+                type: "get", //Change this to post or put
+                dataType: "json",
+                contentType: "application/json",
+                success: function(data) {
+                	var str = ""
+                	for(var i=0;i<=data.rows.length-1;i++ ){
+                		str+= `<tr><td><a href=javascript:fn_one(${data.rows[i].e_id}) >`+data.rows[i].e_id+"</a></td><td>"+data.rows[i].e_name+"</td><td>"+data.rows[i].sex+"</td><td>"+data.rows[i].addr+"</td></tr>"
+                	}
+                   $("#mytbody").html(str);
+                },
+            });
+    	}
+    	function fn_one(e_id){
+    		var params = JSON.stringify({
+    				'e_id':e_id
+    		});
+    		$.ajax({
+    			url: "emp_select",
+                type: "post", //Change this to post or put
+                dataType: "json",
+                data:params,
+                contentType: "application/json",
+                success: function(data) {
+                	$("#e_id").val(data.e_id);
+                	$("#e_name").val(data.e_name);
+                	$("#sex").val(data.sex);
+                	$("#addr").val(data.addr);
+                }
+    		})
+    	}
+    	function fn_insert(){
+    		var params = JSON.stringify({
+				'e_id':$("#e_id").val(),
+				'e_name':$("#e_name").val(),
+				'sex':$("#sex").val(),
+				'addr':$("#addr").val(),
+			});
+    		$.ajax({
+    			url: "emp_insert",
+                type: "post", //Change this to post or put
+                dataType: "json",
+                data:params,
+                contentType: "application/json",
+                success: function(data) {
+                	var cnt = data;
+                	if(cnt==1){
+                		fn_list();
+                		$("#e_id").val("");
+                		$("#e_name").val("");
+                		$("#sex").val("");
+                		$("#addr").val("");
+                	}else{
+                		alert("추가 도중 문제가 생겼습니다.");
+                	}	
+                }
+    		})
+    	}
+    	function fn_update(){
+    		var params = JSON.stringify({
+				'e_id':$("#e_id").val(),
+				'e_name':$("#e_name").val(),
+				'sex':$("#sex").val(),
+				'addr':$("#addr").val(),
+			});
+    		$.ajax({
+    			url: "emp_update",
+                type: "post", //Change this to post or put
+                dataType: "json",
+                data:params,
+                contentType: "application/json",
+                success: function(data) {
+                	var cnt = data;
+                	if(cnt==1){
+                		fn_list();
+                	}else{
+                		alert("업데이트 도중 문제가 생겼습니다.");
+                	}	
+                }
+    		})
+    	}
+    	function fn_delete(){
+    		var params = JSON.stringify({
+				'e_id':$("#e_id").val()
+			});
+    		$.ajax({
+    			url: "emp_delete",
+                type: "post", //Change this to post or put
+                dataType: "json",
+                data:params,
+                contentType: "application/json",
+                success: function(data) {
+                	var cnt = data;
+                	if(cnt==1){
+                		fn_list();
+                		$("#e_id").val("");
+                		$("#e_name").val("");
+                		$("#sex").val("");
+                		$("#addr").val("");
+                	}else{
+                		alert("삭제 도중 문제가 생겼습니다.");
+                	}	
+                }
+    		})
+    	}
+    </script>
+  </head>
+  <body>
+    EMP
+    <table border="1">
+    	<thead>
+    		<tr>
+    			<td>사번</td>
+    			<td>이름</td>
+    			<td>성별</td>
+    			<td>주소</td>
+    		</tr>
+    	</thead>
+    	<tbody id="mytbody"></tbody>
+    </table>
+    <hr>
+    <table border="1">
+    	<tr>
+    		<td>사번</td>
+    		<td>
+    			<input type="text" id="e_id">
+    		</td>
+    	</tr>
+    	<tr>
+    		<td>이름</td>
+    		<td>
+    			<input type="text" id="e_name">
+    		</td>
+    	</tr>
+    	<tr>
+    		<td>성별</td>
+    		<td>
+    			<input type="text" id="sex">
+    		</td>
+    	</tr>
+    	<tr>
+    		<td>주소</td>
+    		<td>
+    			<input type="text" id="addr">
+    		</td>
+    	</tr>
+    	<tr>
+    		<td colspan="2">
+    			<input type="button" value="추가" onclick="fn_insert()">
+    			<input type="button" value="수정" onclick="fn_update()">
+    			<input type="button" value="삭제" onclick="fn_delete()">
+    		</td>
+    	</tr>
+    </table>
+  </body>
+</html>

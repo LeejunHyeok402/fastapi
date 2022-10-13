@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	.myit{
+		width: 20px
+	}
+</style>
+<script type="text/javascript">
+	function plus(){
+		var it1 = document.querySelector("#it1").value;
+		var it2 = document.querySelector("#it2").value;
+		var it3 = document.querySelector("#it3");
+		var a = parseInt(it1);
+		var b = parseInt(it2);
+		var result = a+b;
+		it3.value = result;
+	}
+	function minus(){
+		var it1 = document.querySelector("#it1").value;
+		var it2 = document.querySelector("#it2").value;
+		var it3 = document.querySelector("#it3");
+		var a = parseInt(it1);
+		var b = parseInt(it2);
+		var result = a-b;
+		it3.value = result;
+	}
+	function multiply(){
+		var it1 = document.querySelector("#it1").value;
+		var it2 = document.querySelector("#it2").value;
+		var it3 = document.querySelector("#it3");
+		var a = parseInt(it1);
+		var b = parseInt(it2);
+		var result = a*b;
+		it3.value = result;
+	}
+	function devide(){
+		var it1 = document.querySelector("#it1").value;
+		var it2 = document.querySelector("#it2").value;
+		var it3 = document.querySelector("#it3");
+		var a = parseInt(it1);
+		var b = parseInt(it2);
+		var result = a/b;
+		it3.value = result;
+	}
+</script>
+</head>
+<body>
+	<table border="1px">
+		<tr>
+			<td>
+				<input type="text" class="myit" id="it1">
+			</td>
+			<td>
+				<input type="button" value="+" onclick="plus()">
+				<input type="button" value="-" onclick="minus()">
+				<input type="button" value="*" onclick="multiply()">
+				<input type="button" value="/" onclick="devide()">
+			</td>
+			<td>
+				<input type="text" class="myit" id="it2">
+			</td>
+			<td>
+				=
+			</td>
+			<td>
+				<input type="text" class="myit" id="it3">
+			</td>
+		</tr>
+	
+	</table>
+	
+</body>
+</html>

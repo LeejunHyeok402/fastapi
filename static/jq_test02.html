@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/jquery-3.6.1.js"></script>
+<script type="text/javascript">
+	function plus(){
+		var num = $("#it").val();
+		var result = parseInt(num) + 3;	
+		$("#it").val(`${result}`);
+	}
+	$(document).ready(function(){
+		   $("#btn").bind("click", function() {
+			   plus();
+	        });
+	});
+</script>
+</head>
+<body>
+	<input type="text" id="it" value="200">
+	<input type="button" value="plus3" id="btn">
+</body>
+</html>

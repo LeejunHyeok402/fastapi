@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function myclick(){
+		var mydiv = document.querySelectorAll(".mydiv");
+
+		var v = [
+            1,2,3,4,5       ,6,7,8,9,10,
+            11,12,13,14,15  ,16,17,18,19,20,
+            21,22,23,24,25  ,26,27,28,29,30,
+            31,32,33,34,35  ,36,37,38,39,40,
+            41,42,43,44,45 
+            ];
+		for(var i = 0 ; i<100;i++){
+			var rnd = Math.floor(Math.random() * 45);
+			var a = v[0];
+			var b = v[rnd];
+			v[0] = b;
+			v[rnd] = a;
+		}
+		mydiv[0].innerHTML = v[0];
+		mydiv[1].innerHTML = v[1];
+		mydiv[2].innerHTML = v[2];
+		mydiv[3].innerHTML = v[3];
+		mydiv[4].innerHTML = v[4];
+		mydiv[5].innerHTML = v[5];
+	}
+</script>
+</head>
+<body>
+	<table border="1px">
+		<tr>
+			<td><div class="mydiv">__</div></td>
+			<td><div class="mydiv">__</div></td>
+			<td><div class="mydiv">__</div></td>
+			<td><div class="mydiv">__</div></td>
+			<td><div class="mydiv">__</div></td>
+			<td><div class="mydiv">__</div></td>
+		</tr>
+		<tr>
+			<td colspan="6">
+				<input type="button" value="로또생성" onclick="myclick()">
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
