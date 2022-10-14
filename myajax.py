@@ -34,6 +34,7 @@ async def emp_selects():
 async def emp_select(emp:Emp):
     emp = ed.select(emp.e_id)
     return JSONResponse(emp)
+
 @app.post("/emp_insert")
 async def emp_insert(emp:Emp):
     cnt = ed.insert(emp.e_id, emp.e_name, emp.sex, emp.addr)
@@ -43,6 +44,7 @@ async def emp_insert(emp:Emp):
 async def emp_update(emp:Emp):
     cnt = ed.update(emp.e_id, emp.e_name, emp.sex, emp.addr)
     return JSONResponse(cnt)
+
 @app.post("/emp_delete")
 async def emp_delete(emp:Emp):
     cnt = ed.delete(emp.e_id)
